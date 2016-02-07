@@ -1,56 +1,57 @@
 #include "../includes/fillit.h"
 
-void 	check_tetriminos(t_env *e)
+void		valid_tetri(char **tetri_tab, int x, int y)
 {
-	X = -1;
-	while (TETRI_TAB[++X] != NULL)
+	x = -1;
+	while (tetri_tab[++x] != NULL)
 	{
-		Y = -1;
-		while (TETRI_TAB[++X][++Y] != '\0')
+		y = -1;
+		while (tetri_tab[++x][++y] != '\0')
 		{
-			if (TETRI_TAB[X][Y] != '.' &&
-				TETRI_TAB[X][Y] != '#')
+			if (tetri_tab[x][y] != '.' &&
+				tetri_tab[x][y] != '#')
 				ft_error("error");
 		}
-		if (Y != 4)
+		if (y != 4)
 			ft_error("error");
 	}
-	if (X % 4 != 0 || X == 0)
-		ft_error("error");
-	NB_TETRI = e->x / 4;
-	if (NB_TETRI > 26 || NB_TETRI < 0)
-		ft_error("error");
-	if (NB_TETRI == 0)
-		ft_error(NULL);
-	env->map_width = NB_TETRI * 4 + 1;
-	env->map_width_saved = env->map_width;
+}
+
+
+static void		convert_strtab_to_tetri(t_env *e)
+{
+	int		i;
+
+	if (!(env->tetri = (t_piece**)ft_memalloc(sizeof(t_piece*) * NB_TETRI)))
+		ft_exit("error");
+	i = -1;
+	while (++i < NB_TETRI)
+	{
+		if (!(TETRI[i] = (t_piece*)ft_memalloc(sizeof(t_piece)))
+		|| !(TETRI_CONTENT(i) = (char**)ft_memalloc(sizeof(char*) * 4))
+		|| !(TETRI_CONTENT(i)[0] = ft_strsub(TETRI_STRTAB[i * 4], 0, 4))
+		|| !(TETRI_CONTENT(i)[1] = ft_strsub(TETRI_STRTAB[i * 4 + 1], 0, 4))
+		|| !(TETRI_CONTENT(i)[2] = ft_strsub(TETRI_STRTAB[i * 4 + 2], 0, 4))
+		|| !(TETRI_CONTENT(i)[3] = ft_strsub(TETRI_STRTAB[i * 4 + 3], 0, 4)))
+			ft_exit("error");
+		add_tetri_coord_zero(&TETRI_X(i), &TETRI_Y(i));
+		first_sharp(TETRI[i], 0, 0);
+	}
 }
 
 void	get_tetriminos(t_env *e, char *file)
 {
-	int	i;
+	ft_read(FD, RD, BUFF, file);
 
-	if ((e->fd = open(f, O_RDONLY)) == -1)
+	if ((RD + 1) % 21 != 0 || ft_strstr(BUFF, "\n\n\n") == NULL)
 		ft_error("error");
-	if ((e->rd = read(e->fd, e->buf, BUFF_SIZE)) == -1 ||
-		e->rd == 546)
+	if ((TETRI_TAB = ft_strsplit(BUFF, '\n')) == NULL)
 		ft_error("error");
-	if (close(e->fd) == -1)
-		ft_error("error");
-	if ((e->rd + 1) % 21 != 0 || ft_strstr(e->buf, "\n\n\n") == NULL)
-		ft_error("error");
-	if ((e->tetri_tab = ft_strsplit(e->buf, '\n')) == NULL)
-		ft_error("error");
-	// check tetriminos
-	//
-	// convertir strtab vers tetri
+
+	// check_tetriminos(e);
+	// check_tetriminos_bis(e);
+	// convert_strtab_to_tetri(e);
+	// check_each_tetri_composition(e);
 	// check chaque composition de tetri
-	i = -1;
-	while (++i < e->nb_tetri - 1)
-	{
-		if (e->buf[((i + 1) * 20 + i - 1)] != '\n' ||
-			e->buf[((i + 1) * 20 + i)] != '\n')
-			ft_error("error");
-	}
-	printf("%s\n", e->tetri_tab[0]);
+	check_double_line(NB_TETRI, BUFF);
 }

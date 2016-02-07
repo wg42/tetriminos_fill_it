@@ -60,6 +60,26 @@ typedef struct		s_env
 	t_piece			**tetri_saved;
 }					t_env;
 
+/* READ_FILE.C */
+void 	ft_read(int fd, int rd, char **buff);
+
+/* CHECK.C */
+void	check_limit_tetri(int nb_tetri);
+void	check_x(int x);
+void	check_double_line(int nb_tetri, char **buff);
+
+/* ADD.C */
+void	add_nb_tetri(int *nb_tetri, int x);
+void	add_width_and_save(int nb_tetri, int *mapw, int *mapws);
+void	add_tetri_coord_zero(int *x, int *y);
+
+/* SEARCH.C */
+void	first_sharp(t_piece *tetri, int x, int y);
+
+/* CHECK_TETRIMINO.C */
+void 	check_tetriminos(t_env *e);
+void	check_tetriminos_bis(t_env *e);
+
 /* GET_TETRIMINOS.C */
 void	get_tetriminos(t_env *e, char *file);
 
