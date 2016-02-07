@@ -7,7 +7,11 @@ SRC_NAME = 	main.c 					\
 			resolver.c 				\
 			print_map.c 			\
 			error.c 				\
-
+			add.c 					\
+			check.c 				\
+			check_tetrimino.c 		\
+			read_file.c 			\
+			search.c 				\
 
 OBJ_PATH = obj
 SRC_PATH = srcs
