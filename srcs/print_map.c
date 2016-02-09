@@ -1,6 +1,6 @@
 #include "../includes/fillit.h"
 
-/*static void		cp_tetrisaved_to_tetri(t_env *env)
+static void		cp_tetrisaved_to_tetri(t_env *env)
 {
 	int		i;
 
@@ -46,7 +46,7 @@ static void		fill_map(t_env *e, char c)
 	}
 }
 
-void			print_map(t_env *env)
+void			print_map(t_env *e)
 {
 	int		i;
 	int		j;
@@ -62,11 +62,10 @@ void			print_map(t_env *env)
 			ft_putchar((MAP[i][j]) ? MAP[i][j] : '.');
 		ft_putchar('\n');
 	}
-}*/
+}
 
-void    print_map(t_env *e)
+/*void    print_map(t_env *e)
 {
   (void)e;
   ft_putendl("enter in print_map");
-}
-
+}*/

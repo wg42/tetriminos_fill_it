@@ -1,6 +1,6 @@
 #include "../includes/fillit.h"
 
-static int	calc_map_size(t_env *env)
+static int	calc_map_size(t_env *e)
 {
 	int		i;
 	int		j;
