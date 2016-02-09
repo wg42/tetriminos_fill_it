@@ -1,18 +1,18 @@
 #include "../includes/fillit.h"
 
-void		valid_tetri(char **tetri_tab, int x, int y)
+void		valid_tetri(char **tetri_tab, int *x, int *y)
 {
-	x = -1;
-	while (tetri_tab[++x] != NULL)
+	*x = -1;
+	while (tetri_tab[++(*x)] != NULL)
 	{
-		y = -1;
-		while (tetri_tab[++x][++y] != '\0')
+		*y = -1;
+		while (tetri_tab[++(*x)][++(*y)] != '\0')
 		{
-			if (tetri_tab[x][y] != '.' &&
-				tetri_tab[x][y] != '#')
+			if (tetri_tab[*x][*y] != '.' &&
+				tetri_tab[*x][*y] != '#')
 				ft_error("error");
 		}
-		if (y != 4)
+		if (*y != 4)
 			ft_error("error");
 	}
 }
@@ -47,7 +47,7 @@ void	get_tetriminos(t_env *e, char *file)
 		ft_error("error");
 	
 	check_tetriminos(e);
-	//check_tetriminos_bis(e);
+	// check_tetriminos_bis(e);
 	// convert_strtab_to_tetri(e);
 	// check_each_tetri_composition(e);
 	check_double_line(NB_TETRI, BUFF);

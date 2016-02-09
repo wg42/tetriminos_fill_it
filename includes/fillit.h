@@ -61,7 +61,6 @@ typedef struct		s_env
 }					t_env;
 
 /* READ_FILE.C */
-//void 	ft_read(int fd, int rd, char *buff, char *file);
 void 	ft_read(int *fd, int *rd, char *buff, char *file);
 
 /* FUNCTION.C */
@@ -90,7 +89,8 @@ int		check_tetri_length(int rd);
 
 /* GET_TETRIMINOS.C */
 void	get_tetriminos(t_env *e, char *file);
-void	valid_tetri(char **tetri_tab, int x, int y);
+//void	valid_tetri(char **tetri_tab, int x, int y);
+void	valid_tetri(char **tetri_tab, int *x, int *y);
 
 /* RESOLVER.C */
 void	resolver(t_env *e);

@@ -7,7 +7,7 @@ int		check_tetri_length(int rd)
 
 void 	check_tetriminos(t_env *e)
 {
-	valid_tetri(TETRI_TAB, X, Y);
+	valid_tetri(TETRI_TAB, &X, &Y);
 	check_x(X);
 	add_nb_tetri(&NB_TETRI, X);
 	check_limit_tetri(NB_TETRI);
