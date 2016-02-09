@@ -62,9 +62,3 @@ void			print_map(t_env *e)
 		ft_putchar('\n');
 	}
 }
-
-/*void    print_map(t_env *e)
-{
-  (void)e;
-  ft_putendl("enter in print_map");
-}*/

@@ -77,6 +77,9 @@ void	check_double_line(int nb_tetri, char *buff);
 int		check_tetri_length(int rd);
 int		is_sharp(char c);
 
+/* CHECK2.C */
+void	check_create_tetri(t_piece **tetri, char **content, char **tetri_tab, int *i);
+
 /* ADD.C */
 void	add_nb_tetri(int *nb_tetri, int x);
 void	add_width_and_save(int nb_tetri, int *mapw, int *mapws);

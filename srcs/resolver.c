@@ -25,33 +25,33 @@ static void		init_before_recursive(t_env *e)
 	i = -1;
 	while (++i < NB_TETRI)
 	{
-		if (!(TETRI_SAVED[i] = (t_piece*)ft_memalloc(sizeof(t_piece)))
+		/*if (!(TETRI_SAVED[i] = (t_piece*)ft_memalloc(sizeof(t_piece)))
 		|| !(TETRI_SCONTENT(i) = (char**)ft_memalloc(sizeof(char*) * 4))
 		|| !(TETRI_SCONTENT(i)[0] = ft_strsub(TETRI_TAB[i * 4], 0, 4))
 		|| !(TETRI_SCONTENT(i)[1] = ft_strsub(TETRI_TAB[i * 4 + 1], 0, 4))
 		|| !(TETRI_SCONTENT(i)[2] = ft_strsub(TETRI_TAB[i * 4 + 2], 0, 4))
 		|| !(TETRI_SCONTENT(i)[3] = ft_strsub(TETRI_TAB[i * 4 + 3], 0, 4)))
-			ft_error("error");
-		TETRI_SAVED[i]->x = 0;
-		TETRI_SAVED[i]->y = 0;
+			ft_error("error");*/
+		check_create_tetri(TETRI_SAVED[i], TETRI_SCONTENT(i), TETRI_TAB, &i);
+		add_tetri_coord_zero(&TETRI_SAVED[i]->x, &TETRI_SAVED[i]->y);
 	}
 	MAP = (char**)ft_memalloc(sizeof(char*) * MAP_WIDTH);
 	i = -1;
 	while (++i < MAP_WIDTH)
 		MAP[i] = (char*)ft_strnew(MAP_WIDTH);
-	MAP_SIZE = 4242;
-	MAP_SIZE_SAVED = 4242;
+	MAP_SIZE = 547;
+	MAP_SIZE_SAVED = 547;
 	MAP_WIDTH = calc_size_start_value(e);
 }
 
 static void		recursive_solver(t_env *e, int cur_tetri)
 {
 	TETRI_Y(cur_tetri) = -1;
-	while (MAP_SIZE_SAVED == 4242
+	while (MAP_SIZE_SAVED == 547
 	&& ++TETRI_Y(cur_tetri) < MAP_WIDTH)
 	{
 		TETRI_X(cur_tetri) = -1;
-		while (MAP_SIZE_SAVED == 4242
+		while (MAP_SIZE_SAVED == 547
 		&& ++TETRI_X(cur_tetri) < MAP_WIDTH)
 		{
 			if (add_tetri_in_map(e, cur_tetri))
@@ -71,7 +71,7 @@ static void		recursive_solver(t_env *e, int cur_tetri)
 void			resolver(t_env *e)
 {
 	init_before_recursive(e);
-	while (++MAP_WIDTH < MAP_WIDTH_SAVED && MAP_SIZE_SAVED == 4242)
+	while (++MAP_WIDTH < MAP_WIDTH_SAVED && MAP_SIZE_SAVED == 547)
 	{
 		recursive_solver(e, 0);
 	}

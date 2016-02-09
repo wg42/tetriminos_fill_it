@@ -26,13 +26,14 @@ static void		convert_strtab_to_tetri(t_env *e)
 	i = -1;
 	while (++i < NB_TETRI)
 	{
-		if (!(TETRI[i] = (t_piece*)ft_memalloc(sizeof(t_piece)))
+		/*if (!(TETRI[i] = (t_piece*)ft_memalloc(sizeof(t_piece)))
 		|| !(TETRI_CONTENT(i) = (char**)ft_memalloc(sizeof(char*) * 4))
 		|| !(TETRI_CONTENT(i)[0] = ft_strsub(TETRI_TAB[i * 4], 0, 4))
 		|| !(TETRI_CONTENT(i)[1] = ft_strsub(TETRI_TAB[i * 4 + 1], 0, 4))
 		|| !(TETRI_CONTENT(i)[2] = ft_strsub(TETRI_TAB[i * 4 + 2], 0, 4))
 		|| !(TETRI_CONTENT(i)[3] = ft_strsub(TETRI_TAB[i * 4 + 3], 0, 4)))
-			ft_error("error");
+			ft_error("error");*/
+		check_create_tetri(TETRI[i], TETRI_CONTENT(i), TETRI_TAB, &i);
 		add_tetri_coord_zero(&TETRI_X(i), &TETRI_Y(i));
 		first_sharp(TETRI[i]);
 	}
