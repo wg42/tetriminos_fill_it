@@ -72,6 +72,7 @@ void	save_map(t_env *e);
 void	check_limit_tetri(int nb_tetri);
 void	check_x(int x);
 void	check_double_line(int nb_tetri, char *buff);
+int		check_tetri_length(int rd);
 
 /* ADD.C */
 void	add_nb_tetri(int *nb_tetri, int x);
@@ -84,12 +85,10 @@ void	first_sharp(t_piece *tetri, int x, int y);
 
 /* CHECK_TETRIMINO.C */
 void 	check_tetriminos(t_env *e);
-//void	check_tetriminos_bis(t_env *e);
-int		check_tetri_length(int rd);
+void	check_tetriminos2(t_env *e, int i, int count);
 
 /* GET_TETRIMINOS.C */
 void	get_tetriminos(t_env *e, char *file);
-//void	valid_tetri(char **tetri_tab, int x, int y);
 void	valid_tetri(char **tetri_tab, int *x, int *y);
 
 /* RESOLVER.C */

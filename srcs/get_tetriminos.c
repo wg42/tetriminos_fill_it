@@ -47,7 +47,6 @@ void	get_tetriminos(t_env *e, char *file)
 		ft_error("error");
 	
 	check_tetriminos(e);
-	// check_tetriminos_bis(e);
 	// convert_strtab_to_tetri(e);
 	// check_each_tetri_composition(e);
 	check_double_line(NB_TETRI, BUFF);

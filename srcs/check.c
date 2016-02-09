@@ -8,6 +8,11 @@ void	check_limit_tetri(int nb_tetri)
 		ft_error(NULL);
 }
 
+int		check_tetri_length(int rd)
+{
+	return ((rd + 1) % 21 != 0);
+}
+
 void	check_x(int x)
 {
 	if (x % 4 != 0 || x == 0)

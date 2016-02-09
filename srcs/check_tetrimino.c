@@ -1,10 +1,5 @@
 #include "../includes/fillit.h"
 
-int		check_tetri_length(int rd)
-{
-	return ((rd + 1) % 21 != 0);
-}
-
 void 	check_tetriminos(t_env *e)
 {
 	valid_tetri(TETRI_TAB, &X, &Y);
@@ -12,22 +7,19 @@ void 	check_tetriminos(t_env *e)
 	add_nb_tetri(&NB_TETRI, X);
 	check_limit_tetri(NB_TETRI);
 	add_width_and_save(NB_TETRI, &MAP_WIDTH, &MAP_WIDTH_SAVED);
+	check_tetriminos2(e, -1, 0);
+	ft_putendl("ok");
 }
 
-/*void		check_tetriminos_bis(t_env *e)
+void		check_tetriminos2(t_env *e, int i, int count)
 {
-	int		i;
-	int		count;
-
-	count = 0;
 	X = 0;
 	Y = -1;
-	while (TETRI_STRTAB[X] != NULL)
+	while (TETRI_TAB[X] != NULL)
 	{
-		i = -1;
 		while (++i < 16)
 		{
-			if (TETRI_STRTAB[X][++Y] == '#')
+			if (is_sharp(TETRI_TAB[X][++Y]))
 				count++;
 			if (((i + 1) % 4) == 0)
 			{
@@ -37,4 +29,4 @@ void 	check_tetriminos(t_env *e)
 		}
 		check_x(count);
 	}
-}*/
+}
