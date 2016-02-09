@@ -1,7 +1,65 @@
 #include "../includes/fillit.h"
 
-void			print_map(t_env *e)
+static void		cp_tetrisaved_to_tetri(t_env *env)
 {
-	ft_putendl("Enter in the printer");
-	(void)env;
+	int		i;
+
+	i = -1;
+	while (++i < NB_TETRI)
+	{
+		TETRI[i]->x = TETRI_SAVED[i]->x;
+		TETRI[i]->y = TETRI_SAVED[i]->y;
+		add_swap_tetri(TETRI[i]->content, TETRI_SAVED[i]->content)
+	}
+	MAP_SIZE = MAP_SIZE_SAVED;
+}
+
+static void		clear_map(t_env *e)
+{
+	int		i;
+
+	i = -1;
+	while (++i < MAP_WIDTH)
+		ft_bzero(MAP[i], MAP_WIDTH);
+}
+
+static void		fill_map(t_env *e, char c)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	c = 'a';
+	while (++i < NB_TETRI)
+		add_tetri_in_map(env, i);
+	i = -1;
+	while (++i < MAP_SIZE)
+	{
+		j = -1;
+		while (++j < MAP_SIZE)
+		{
+			if (MAP[i][j])
+				MAP[i][j] += 17;
+			else
+				MAP[i][j] = '.';
+		}
+	}
+}
+
+void			print_map(t_env *env)
+{
+	int		i;
+	int		j;
+
+	cp_tetrisaved_to_tetri(env);
+	clear_map(env);
+	fill_map(env);
+	i = -1;
+	while (++i < MAP_SIZE)
+	{
+		j = -1;
+		while (++j < MAP_SIZE)
+			ft_putchar((MAP[i][j]) ? MAP[i][j] : '.');
+		ft_putchar('\n');
+	}
 }

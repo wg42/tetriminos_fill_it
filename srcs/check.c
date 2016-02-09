@@ -26,3 +26,8 @@ void	check_double_line(int nb_tetri, char **buff)
 			ft_error("error");
 	}
 }
+
+int		is_sharp(char c)
+{
+	return (c == '#');
+}

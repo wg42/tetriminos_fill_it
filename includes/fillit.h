@@ -7,29 +7,29 @@
 # define MAX_PIECE 26
 # define BUFF_SIZE 546
 
-# define TETRI_TAB env->tetri_tab
-# define NB_TETRI env->nb_tetri
-# define FD env->fd
-# define RD env->rd
-# define BUFF env->buff
+# define TETRI_TAB e->tetri_tab
+# define NB_TETRI e->nb_tetri
+# define FD e->fd
+# define RD e->rd
+# define BUFF e->buff
 # define BUFF_SIZE 546
-# define X env->x
-# define Y env->y
+# define X e->x
+# define Y e->y
 
-# define MAP env->map
-# define MAP_SIZE env->map_size
-# define MAP_SIZE_SAVED env->map_size_saved
-# define MAP_WIDTH env->map_width
-# define MAP_WIDTH_SAVED env->map_width_saved
+# define MAP e->map
+# define MAP_SIZE e->map_size
+# define MAP_SIZE_SAVED e->map_size_saved
+# define MAP_WIDTH e->map_width
+# define MAP_WIDTH_SAVED e->map_width_saved
 
-# define TETRI env->tetri
-# define TETRI_CONTENT(i) env->tetri[i]->content
-# define TETRI_X(i) env->tetri[i]->x
-# define TETRI_Y(i) env->tetri[i]->y
-# define TETRI_XS(i) env->tetri[i]->x_start
-# define TETRI_YS(i) env->tetri[i]->y_start
-# define TETRI_SAVED env->tetri_saved
-# define TETRI_SCONTENT(i) env->tetri_saved[i]->content
+# define TETRI e->tetri
+# define TETRI_CONTENT(i) e->tetri[i]->content
+# define TETRI_X(i) e->tetri[i]->x
+# define TETRI_Y(i) e->tetri[i]->y
+# define TETRI_XS(i) e->tetri[i]->x_start
+# define TETRI_YS(i) e->tetri[i]->y_start
+# define TETRI_SAVED e->tetri_saved
+# define TETRI_SCONTENT(i) e->tetri_saved[i]->content
 
 typedef struct		s_piece
 {
@@ -63,6 +63,11 @@ typedef struct		s_env
 /* READ_FILE.C */
 void 	ft_read(int fd, int rd, char **buff);
 
+/* FUNCTION.C */
+void	sharp_to_letter(t_env *e, int nb_tetri, char c);
+int		ft_max(int x, int y);
+void	save_map(t_env *e);
+
 /* CHECK.C */
 void	check_limit_tetri(int nb_tetri);
 void	check_x(int x);
@@ -72,6 +77,7 @@ void	check_double_line(int nb_tetri, char **buff);
 void	add_nb_tetri(int *nb_tetri, int x);
 void	add_width_and_save(int nb_tetri, int *mapw, int *mapws);
 void	add_tetri_coord_zero(int *x, int *y);
+void	add_swap_tetri(char **a, char **b);
 
 /* SEARCH.C */
 void	first_sharp(t_piece *tetri, int x, int y);
@@ -79,6 +85,7 @@ void	first_sharp(t_piece *tetri, int x, int y);
 /* CHECK_TETRIMINO.C */
 void 	check_tetriminos(t_env *e);
 void	check_tetriminos_bis(t_env *e);
+int		check_tetri_length(int rd);
 
 /* GET_TETRIMINOS.C */
 void	get_tetriminos(t_env *e, char *file);

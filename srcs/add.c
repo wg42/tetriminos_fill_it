@@ -16,3 +16,21 @@ void	add_tetri_coord_zero(int *x, int *y)
 	*x = 0;
 	*y = 0;
 }
+
+void	add_swap_tetri(char **a, char **b)
+{
+	int		j;
+
+	j = 0;
+	while (j < 4)
+	{
+		ft_memcpy(a[j], b[j], 5);
+		j++;
+	}
+}
+
+void	swap_coor_tetri(t_piece *a, t_piece *b)
+{
+	a->x = b->x;
+	a->y = b->y;
+}

@@ -22,7 +22,7 @@ static void		convert_strtab_to_tetri(t_env *e)
 {
 	int		i;
 
-	if (!(env->tetri = (t_piece**)ft_memalloc(sizeof(t_piece*) * NB_TETRI)))
+	if (!(e->tetri = (t_piece**)ft_memalloc(sizeof(t_piece*) * NB_TETRI)))
 		ft_exit("error");
 	i = -1;
 	while (++i < NB_TETRI)
@@ -43,7 +43,7 @@ void	get_tetriminos(t_env *e, char *file)
 {
 	ft_read(FD, RD, BUFF, file);
 
-	if ((RD + 1) % 21 != 0 || ft_strstr(BUFF, "\n\n\n") == NULL)
+	if (check_tetri_length(RD) || ft_strstr(BUFF, "\n\n\n") == NULL)
 		ft_error("error");
 	if ((TETRI_TAB = ft_strsplit(BUFF, '\n')) == NULL)
 		ft_error("error");
@@ -52,6 +52,5 @@ void	get_tetriminos(t_env *e, char *file)
 	// check_tetriminos_bis(e);
 	// convert_strtab_to_tetri(e);
 	// check_each_tetri_composition(e);
-	// check chaque composition de tetri
 	check_double_line(NB_TETRI, BUFF);
 }

@@ -1,5 +1,10 @@
 #include "../includes/fillit.h"
 
+int		check_tetri_length(int rd)
+{
+	return ((RD + 1) % 21 != 0);
+}
+
 void 	check_tetriminos(t_env *e)
 {
 	valid_tetri(TETRI_TAB, X, Y);

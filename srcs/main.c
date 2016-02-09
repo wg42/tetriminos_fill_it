@@ -8,7 +8,7 @@ int		main(int ac, char **av)
 		ft_exit("error");
 	ft_bzero(&e, sizeof(e));
 	get_tetriminos(&e, av[1]);
-	launch_recursive_solver(&e);
-	print_solved_map(&e);
+	resolver(&e);
+	print_map(&e);
 	return (0);
 }
