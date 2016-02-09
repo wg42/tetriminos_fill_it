@@ -64,28 +64,34 @@ typedef struct		s_env
 void 	ft_read(int *fd, int *rd, char *buff, char *file);
 
 /* FUNCTION.C */
+void	replace_tetri_in_map(t_env *e, int nb_tetri, char c);
 void	sharp_to_letter(t_env *e, int nb_tetri, char c);
 int		ft_max(int x, int y);
 void	save_map(t_env *e);
+int		add_tetri_in_map(t_env *e, int nb_tetri);
 
 /* CHECK.C */
 void	check_limit_tetri(int nb_tetri);
 void	check_x(int x);
 void	check_double_line(int nb_tetri, char *buff);
 int		check_tetri_length(int rd);
+int		is_sharp(char c);
 
 /* ADD.C */
 void	add_nb_tetri(int *nb_tetri, int x);
 void	add_width_and_save(int nb_tetri, int *mapw, int *mapws);
 void	add_tetri_coord_zero(int *x, int *y);
 void	add_swap_tetri(char **a, char **b);
+void	swap_coor_tetri(t_piece *a, t_piece *b);
 
 /* SEARCH.C */
-void	first_sharp(t_piece *tetri, int x, int y);
+//void	first_sharp(t_piece *tetri, int x, int y);
+void		first_sharp(t_piece *tetri);
 
 /* CHECK_TETRIMINO.C */
+void	check_tetri3(t_env *e, int i, int nb_col, int nb_lines);
 void 	check_tetriminos(t_env *e);
-void	check_tetriminos2(t_env *e, int i, int count);
+void	check_tetriminos2(t_env *e);
 
 /* GET_TETRIMINOS.C */
 void	get_tetriminos(t_env *e, char *file);

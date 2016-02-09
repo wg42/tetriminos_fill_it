@@ -7,16 +7,20 @@ void 	check_tetriminos(t_env *e)
 	add_nb_tetri(&NB_TETRI, X);
 	check_limit_tetri(NB_TETRI);
 	add_width_and_save(NB_TETRI, &MAP_WIDTH, &MAP_WIDTH_SAVED);
-	check_tetriminos2(e, -1, 0);
-	ft_putendl("ok");
+	check_tetriminos2(e);
 }
 
-void		check_tetriminos2(t_env *e, int i, int count)
+void		check_tetriminos2(t_env *e)
 {
+	int		i;
+	int		count;
+
 	X = 0;
 	Y = -1;
+	count = 0;
 	while (TETRI_TAB[X] != NULL)
 	{
+		i = -1;
 		while (++i < 16)
 		{
 			if (is_sharp(TETRI_TAB[X][++Y]))

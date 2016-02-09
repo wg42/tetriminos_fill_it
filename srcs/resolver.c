@@ -1,12 +1,6 @@
 #include "../includes/fillit.h"
 
-void		resolver(t_env *e)
-{
-	ft_putendl("Enter in the solver");
-	(void)e;
-}
-
-/*static int		calc_size_start_value(t_env *env)
+static int		calc_size_start_value(t_env *e)
 {
 	int		n;
 	float	r;
@@ -22,22 +16,22 @@ void		resolver(t_env *e)
 	return ((s > 0) ? (int)r + 1 : r);
 }
 
-static void		init_before_recursive(t_env *env)
+static void		init_before_recursive(t_env *e)
 {
 	int			i;
 
-	if (!(TETRI_SAVED = (t_tetri**)ft_memalloc(sizeof(t_tetri*) * NB_TETRI)))
-		ft_exit("error");
+	if (!(TETRI_SAVED = (t_piece**)ft_memalloc(sizeof(t_piece*) * NB_TETRI)))
+		ft_error("error");
 	i = -1;
 	while (++i < NB_TETRI)
 	{
-		if (!(TETRI_SAVED[i] = (t_tetri*)ft_memalloc(sizeof(t_tetri)))
+		if (!(TETRI_SAVED[i] = (t_piece*)ft_memalloc(sizeof(t_piece)))
 		|| !(TETRI_SCONTENT(i) = (char**)ft_memalloc(sizeof(char*) * 4))
-		|| !(TETRI_SCONTENT(i)[0] = ft_strsub(TETRI_STRTAB[i * 4], 0, 4))
-		|| !(TETRI_SCONTENT(i)[1] = ft_strsub(TETRI_STRTAB[i * 4 + 1], 0, 4))
-		|| !(TETRI_SCONTENT(i)[2] = ft_strsub(TETRI_STRTAB[i * 4 + 2], 0, 4))
-		|| !(TETRI_SCONTENT(i)[3] = ft_strsub(TETRI_STRTAB[i * 4 + 3], 0, 4)))
-			ft_exit("error");
+		|| !(TETRI_SCONTENT(i)[0] = ft_strsub(TETRI_TAB[i * 4], 0, 4))
+		|| !(TETRI_SCONTENT(i)[1] = ft_strsub(TETRI_TAB[i * 4 + 1], 0, 4))
+		|| !(TETRI_SCONTENT(i)[2] = ft_strsub(TETRI_TAB[i * 4 + 2], 0, 4))
+		|| !(TETRI_SCONTENT(i)[3] = ft_strsub(TETRI_TAB[i * 4 + 3], 0, 4)))
+			ft_error("error");
 		TETRI_SAVED[i]->x = 0;
 		TETRI_SAVED[i]->y = 0;
 	}
@@ -47,10 +41,10 @@ static void		init_before_recursive(t_env *env)
 		MAP[i] = (char*)ft_strnew(MAP_WIDTH);
 	MAP_SIZE = 4242;
 	MAP_SIZE_SAVED = 4242;
-	MAP_WIDTH = calc_size_start_value(env);
-}*/
+	MAP_WIDTH = calc_size_start_value(e);
+}
 
-/*static void		recursive_solver(t_env *env, int cur_tetri)
+static void		recursive_solver(t_env *e, int cur_tetri)
 {
 	TETRI_Y(cur_tetri) = -1;
 	while (MAP_SIZE_SAVED == 4242
@@ -60,25 +54,25 @@ static void		init_before_recursive(t_env *env)
 		while (MAP_SIZE_SAVED == 4242
 		&& ++TETRI_X(cur_tetri) < MAP_WIDTH)
 		{
-			if (add_tetri_in_map(env, cur_tetri))
+			if (add_tetri_in_map(e, cur_tetri))
 				continue ;
 			if (cur_tetri + 1 == NB_TETRI)
 			{
-				save_map(env);
+				save_map(e);
 				return ;
 			}
 			else
-				recursive_solver(env, cur_tetri + 1);
-			replace_tetri_in_map(env, cur_tetri, 0);
+				recursive_solver(e, cur_tetri + 1);
+			replace_tetri_in_map(e, cur_tetri, 0);
 		}
 	}
 }
 
-void			launch_recursive_solver(t_env *env)
+void			resolver(t_env *e)
 {
-	init_before_recursive(env);
+	init_before_recursive(e);
 	while (++MAP_WIDTH < MAP_WIDTH_SAVED && MAP_SIZE_SAVED == 4242)
 	{
-		recursive_solver(env, 0);
+		recursive_solver(e, 0);
 	}
-}*/
+}

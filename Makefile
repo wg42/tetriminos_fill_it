@@ -4,6 +4,7 @@ NAME = fillit
 LIBFT = libft.a
 SRC_NAME = 	main.c 					\
 			get_tetriminos.c 		\
+			get_tetriminos2.c 		\
 			resolver.c 				\
 			print_map.c 			\
 			error.c 				\
@@ -12,6 +13,7 @@ SRC_NAME = 	main.c 					\
 			check_tetrimino.c 		\
 			read_file.c 			\
 			search.c 				\
+			function.c 				\
 
 OBJ_PATH = obj
 SRC_PATH = srcs

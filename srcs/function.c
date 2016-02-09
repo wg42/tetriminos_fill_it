@@ -19,13 +19,29 @@ static int	calc_map_size(t_env *e)
 	return (size);
 }
 
-static int	add_tetri_in_map2(t_env *env, int nb_tetri)
+void		replace_tetri_in_map(t_env *e, int nb_tetri, char c)
 {
-	replace_tetri_in_map(env, nb_tetri, 0);
+	int		i;
+	int		j;
+
+	nb_tetri += '0';
+	i = -1;
+	while (++i < MAP_WIDTH)
+	{
+		j = -1;
+		while (++j < MAP_WIDTH)
+			if (MAP[i][j] == nb_tetri)
+				MAP[i][j] = c;
+	}
+}
+
+static int	add_tetri_in_map2(t_env *e, int nb_tetri)
+{
+	replace_tetri_in_map(e, nb_tetri, 0);
 	return (-1);
 }
 
-int			add_tetri_in_map(t_env *env, int nb_tetri)
+int			add_tetri_in_map(t_env *e, int nb_tetri)
 {
 	int		i;
 	int		j;
@@ -44,32 +60,16 @@ int			add_tetri_in_map(t_env *env, int nb_tetri)
 			|| TETRI_X(nb_tetri) + j - TETRI_XS(nb_tetri) >= MAP_WIDTH
 			|| MAP[TETRI_Y(nb_tetri) + i - TETRI_YS(nb_tetri)][TETRI_X(nb_tetri)
 			+ j - TETRI_XS(nb_tetri)] != 0)
-				return (add_tetri_in_map2(env, nb_tetri));
+				return (add_tetri_in_map2(e, nb_tetri));
 			MAP[TETRI_Y(nb_tetri) + i - TETRI_YS(nb_tetri)][TETRI_X(nb_tetri)
 			+ j - TETRI_XS(nb_tetri)] = nb_tetri + '0';
 		}
 	}
-	MAP_SIZE = calc_map_size(env);
+	MAP_SIZE = calc_map_size(e);
 	return (0);
 }
 
-void		sharp_to_letter(t_env *env, int nb_tetri, char c)
-{
-	int		i;
-	int		j;
-
-	nb_tetri += '0';
-	i = -1;
-	while (++i < MAP_WIDTH)
-	{
-		j = -1;
-		while (++j < MAP_WIDTH)
-			if (MAP[i][j] == nb_tetri)
-				MAP[i][j] = c;
-	}
-}
-
-void		replace_tetri_in_map(t_env *env, int nb_tetri, char c)
+void		sharp_to_letter(t_env *e, int nb_tetri, char c)
 {
 	int		i;
 	int		j;

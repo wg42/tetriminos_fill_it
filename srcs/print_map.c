@@ -1,6 +1,6 @@
 #include "../includes/fillit.h"
 
-static void		cp_tetrisaved_to_tetri(t_env *env)
+static void		cp_tetrisaved_to_tetri(t_env *e)
 {
 	int		i;
 
@@ -9,7 +9,7 @@ static void		cp_tetrisaved_to_tetri(t_env *env)
 	{
 		TETRI[i]->x = TETRI_SAVED[i]->x;
 		TETRI[i]->y = TETRI_SAVED[i]->y;
-		add_swap_tetri(TETRI[i]->content, TETRI_SAVED[i]->content)
+		add_swap_tetri(TETRI[i]->content, TETRI_SAVED[i]->content);
 	}
 	MAP_SIZE = MAP_SIZE_SAVED;
 }
@@ -23,15 +23,14 @@ static void		clear_map(t_env *e)
 		ft_bzero(MAP[i], MAP_WIDTH);
 }
 
-static void		fill_map(t_env *e, char c)
+static void		fill_map(t_env *e)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	c = 'a';
 	while (++i < NB_TETRI)
-		add_tetri_in_map(env, i);
+		add_tetri_in_map(e, i);
 	i = -1;
 	while (++i < MAP_SIZE)
 	{
@@ -51,9 +50,9 @@ void			print_map(t_env *e)
 	int		i;
 	int		j;
 
-	cp_tetrisaved_to_tetri(env);
-	clear_map(env);
-	fill_map(env);
+	cp_tetrisaved_to_tetri(e);
+	clear_map(e);
+	fill_map(e);
 	i = -1;
 	while (++i < MAP_SIZE)
 	{
