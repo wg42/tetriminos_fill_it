@@ -3,10 +3,10 @@
 void		resolver(t_env *e)
 {
 	ft_putendl("Enter in the solver");
-	(void)env;
+	(void)e;
 }
 
-static int		calc_size_start_value(t_env *env)
+/*static int		calc_size_start_value(t_env *env)
 {
 	int		n;
 	float	r;
@@ -48,9 +48,9 @@ static void		init_before_recursive(t_env *env)
 	MAP_SIZE = 4242;
 	MAP_SIZE_SAVED = 4242;
 	MAP_WIDTH = calc_size_start_value(env);
-}
+}*/
 
-static void		recursive_solver(t_env *env, int cur_tetri)
+/*static void		recursive_solver(t_env *env, int cur_tetri)
 {
 	TETRI_Y(cur_tetri) = -1;
 	while (MAP_SIZE_SAVED == 4242
@@ -81,4 +81,4 @@ void			launch_recursive_solver(t_env *env)
 	{
 		recursive_solver(env, 0);
 	}
-}
+}*/

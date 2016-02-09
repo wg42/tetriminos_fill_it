@@ -14,7 +14,7 @@ void	check_x(int x)
 		ft_error("error");
 }
 
-void	check_double_line(int nb_tetri, char **buff)
+void	check_double_line(int nb_tetri, char *buff)
 {
 	int i;
 

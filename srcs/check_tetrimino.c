@@ -2,7 +2,7 @@
 
 int		check_tetri_length(int rd)
 {
-	return ((RD + 1) % 21 != 0);
+	return ((rd + 1) % 21 != 0);
 }
 
 void 	check_tetriminos(t_env *e)
@@ -14,7 +14,7 @@ void 	check_tetriminos(t_env *e)
 	add_width_and_save(NB_TETRI, &MAP_WIDTH, &MAP_WIDTH_SAVED);
 }
 
-void		check_tetriminos_bis(t_env *e)
+/*void		check_tetriminos_bis(t_env *e)
 {
 	int		i;
 	int		count;
@@ -37,4 +37,4 @@ void		check_tetriminos_bis(t_env *e)
 		}
 		check_x(count);
 	}
-}
+}*/

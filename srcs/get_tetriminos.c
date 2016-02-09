@@ -17,8 +17,7 @@ void		valid_tetri(char **tetri_tab, int x, int y)
 	}
 }
 
-
-static void		convert_strtab_to_tetri(t_env *e)
+/*static void		convert_strtab_to_tetri(t_env *e)
 {
 	int		i;
 
@@ -37,19 +36,18 @@ static void		convert_strtab_to_tetri(t_env *e)
 		add_tetri_coord_zero(&TETRI_X(i), &TETRI_Y(i));
 		first_sharp(TETRI[i], 0, 0);
 	}
-}
+}*/
 
 void	get_tetriminos(t_env *e, char *file)
 {
-	ft_read(FD, RD, BUFF, file);
-
-	if (check_tetri_length(RD) || ft_strstr(BUFF, "\n\n\n") == NULL)
+	ft_read(&FD, &RD, BUFF, file);
+	if (check_tetri_length(RD) || ft_strstr(BUFF, "\n") == NULL)
 		ft_error("error");
 	if ((TETRI_TAB = ft_strsplit(BUFF, '\n')) == NULL)
 		ft_error("error");
-
-	// check_tetriminos(e);
-	// check_tetriminos_bis(e);
+	
+	check_tetriminos(e);
+	//check_tetriminos_bis(e);
 	// convert_strtab_to_tetri(e);
 	// check_each_tetri_composition(e);
 	check_double_line(NB_TETRI, BUFF);

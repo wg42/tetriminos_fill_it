@@ -1,6 +1,6 @@
 #ifndef __FILLIT_H__
 # define __FILLIT_H__
-//# include "../libft/libft.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 
 # define PIECE 21
@@ -61,7 +61,8 @@ typedef struct		s_env
 }					t_env;
 
 /* READ_FILE.C */
-void 	ft_read(int fd, int rd, char **buff);
+//void 	ft_read(int fd, int rd, char *buff, char *file);
+void 	ft_read(int *fd, int *rd, char *buff, char *file);
 
 /* FUNCTION.C */
 void	sharp_to_letter(t_env *e, int nb_tetri, char c);
@@ -71,7 +72,7 @@ void	save_map(t_env *e);
 /* CHECK.C */
 void	check_limit_tetri(int nb_tetri);
 void	check_x(int x);
-void	check_double_line(int nb_tetri, char **buff);
+void	check_double_line(int nb_tetri, char *buff);
 
 /* ADD.C */
 void	add_nb_tetri(int *nb_tetri, int x);
@@ -84,11 +85,12 @@ void	first_sharp(t_piece *tetri, int x, int y);
 
 /* CHECK_TETRIMINO.C */
 void 	check_tetriminos(t_env *e);
-void	check_tetriminos_bis(t_env *e);
+//void	check_tetriminos_bis(t_env *e);
 int		check_tetri_length(int rd);
 
 /* GET_TETRIMINOS.C */
 void	get_tetriminos(t_env *e, char *file);
+void	valid_tetri(char **tetri_tab, int x, int y);
 
 /* RESOLVER.C */
 void	resolver(t_env *e);
