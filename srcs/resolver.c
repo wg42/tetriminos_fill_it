@@ -23,36 +23,27 @@ static void		init_before_recursive(t_env *e)
 	if (!(TETRI_SAVED = (t_piece**)ft_memalloc(sizeof(t_piece*) * NB_TETRI)))
 		ft_error("error");
 	i = -1;
-	while (++i < NB_TETRI)
+	while (++i <= NB_TETRI)
 	{
-		/*if (!(TETRI_SAVED[i] = (t_piece*)ft_memalloc(sizeof(t_piece)))
-		|| !(TETRI_SCONTENT(i) = (char**)ft_memalloc(sizeof(char*) * 4))
-		|| !(TETRI_SCONTENT(i)[0] = ft_strsub(TETRI_TAB[i * 4], 0, 4))
-		|| !(TETRI_SCONTENT(i)[1] = ft_strsub(TETRI_TAB[i * 4 + 1], 0, 4))
-		|| !(TETRI_SCONTENT(i)[2] = ft_strsub(TETRI_TAB[i * 4 + 2], 0, 4))
-		|| !(TETRI_SCONTENT(i)[3] = ft_strsub(TETRI_TAB[i * 4 + 3], 0, 4)))
-			ft_error("error");*/
-		check_create_tetri(TETRI_SAVED[i], TETRI_SCONTENT(i), TETRI_TAB, &i);
+		check_create_tetri(e, i, 1);
 		add_tetri_coord_zero(&TETRI_SAVED[i]->x, &TETRI_SAVED[i]->y);
 	}
 	MAP = (char**)ft_memalloc(sizeof(char*) * MAP_WIDTH);
 	i = -1;
-	while (++i < MAP_WIDTH)
+	while (++i <= MAP_WIDTH)
 		MAP[i] = (char*)ft_strnew(MAP_WIDTH);
-	MAP_SIZE = 547;
-	MAP_SIZE_SAVED = 547;
+	MAP_SIZE = calc_size_start_value(e) ;
+	MAP_SIZE_SAVED = calc_size_start_value(e);
 	MAP_WIDTH = calc_size_start_value(e);
 }
 
 static void		recursive_solver(t_env *e, int cur_tetri)
 {
 	TETRI_Y(cur_tetri) = -1;
-	while (MAP_SIZE_SAVED == 547
-	&& ++TETRI_Y(cur_tetri) < MAP_WIDTH)
+	while (MAP_SIZE_SAVED != 0 && ++TETRI_Y(cur_tetri) < MAP_WIDTH)
 	{
 		TETRI_X(cur_tetri) = -1;
-		while (MAP_SIZE_SAVED == 547
-		&& ++TETRI_X(cur_tetri) < MAP_WIDTH)
+		while (MAP_SIZE_SAVED != 0 && ++TETRI_X(cur_tetri) < MAP_WIDTH)
 		{
 			if (add_tetri_in_map(e, cur_tetri))
 				continue ;
@@ -63,7 +54,7 @@ static void		recursive_solver(t_env *e, int cur_tetri)
 			}
 			else
 				recursive_solver(e, cur_tetri + 1);
-			replace_tetri_in_map(e, cur_tetri, 0);
+			sharp_to_letter(e, cur_tetri, 0);
 		}
 	}
 }
@@ -71,8 +62,6 @@ static void		recursive_solver(t_env *e, int cur_tetri)
 void			resolver(t_env *e)
 {
 	init_before_recursive(e);
-	while (++MAP_WIDTH < MAP_WIDTH_SAVED && MAP_SIZE_SAVED == 547)
-	{
+	while (++MAP_WIDTH < MAP_WIDTH_SAVED && MAP_SIZE_SAVED != 0)
 		recursive_solver(e, 0);
-	}
 }

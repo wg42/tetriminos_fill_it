@@ -10,6 +10,7 @@ SRC_NAME = 	main.c 					\
 			error.c 				\
 			add.c 					\
 			check.c 				\
+			check2.c 				\
 			check_tetrimino.c 		\
 			read_file.c 			\
 			search.c 				\

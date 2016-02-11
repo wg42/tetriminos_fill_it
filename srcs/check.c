@@ -13,9 +13,9 @@ int		check_tetri_length(int rd)
 	return ((rd + 1) % 21 != 0);
 }
 
-void	check_x(int x)
+void	check_coord(int coord)
 {
-	if (x % 4 != 0 || x == 0)
+	if (coord % 4 != 0 || coord == 0)
 		ft_error("error");
 }
 

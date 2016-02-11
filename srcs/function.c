@@ -8,18 +8,22 @@ static int	calc_map_size(t_env *e)
 	int		tmp_max;
 
 	size = 0;
-	i = -1;
-	while (++i < MAP_WIDTH)
+	i = 0;
+	while (i < MAP_WIDTH)
 	{
-		j = -1;
-		while (++j < MAP_WIDTH)
-			if (MAP[i][j] != 0 && (tmp_max = ft_max(i + 1, j + 1)) > size)
+		j = 0;
+		while (j < MAP_WIDTH)
+		{
+			if (MAP[i][j] != 0 && (tmp_max = ft_max(i + 1, j + 1)) >= size)
 				size = tmp_max;
+			j++;
+		}
+		i++;
 	}
 	return (size);
 }
 
-void		replace_tetri_in_map(t_env *e, int nb_tetri, char c)
+void		sharp_to_letter(t_env *e, int nb_tetri, char c)
 {
 	int		i;
 	int		j;
@@ -37,7 +41,7 @@ void		replace_tetri_in_map(t_env *e, int nb_tetri, char c)
 
 static int	add_tetri_in_map2(t_env *e, int nb_tetri)
 {
-	replace_tetri_in_map(e, nb_tetri, 0);
+	sharp_to_letter(e, nb_tetri, 0);
 	return (-1);
 }
 
@@ -61,28 +65,13 @@ int			add_tetri_in_map(t_env *e, int nb_tetri)
 			|| MAP[TETRI_Y(nb_tetri) + i - TETRI_YS(nb_tetri)][TETRI_X(nb_tetri)
 			+ j - TETRI_XS(nb_tetri)] != 0)
 				return (add_tetri_in_map2(e, nb_tetri));
-			MAP[TETRI_Y(nb_tetri) + i - TETRI_YS(nb_tetri)][TETRI_X(nb_tetri)
-			+ j - TETRI_XS(nb_tetri)] = nb_tetri + '0';
+			MAP[TETRI_Y(nb_tetri) + i - TETRI_YS(nb_tetri)]
+				[TETRI_X(nb_tetri)+ j - TETRI_XS(nb_tetri)] = nb_tetri + '0';
+
 		}
 	}
 	MAP_SIZE = calc_map_size(e);
 	return (0);
-}
-
-void		sharp_to_letter(t_env *e, int nb_tetri, char c)
-{
-	int		i;
-	int		j;
-
-	nb_tetri += '0';
-	i = -1;
-	while (++i < MAP_WIDTH)
-	{
-		j = -1;
-		while (++j < MAP_WIDTH)
-			if (MAP[i][j] == nb_tetri)
-				MAP[i][j] = c;
-	}
 }
 
 int		ft_max(int x, int y)

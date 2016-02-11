@@ -72,13 +72,13 @@ int		add_tetri_in_map(t_env *e, int nb_tetri);
 
 /* CHECK.C */
 void	check_limit_tetri(int nb_tetri);
-void	check_x(int x);
+void	check_coord(int coord);
 void	check_double_line(int nb_tetri, char *buff);
 int		check_tetri_length(int rd);
 int		is_sharp(char c);
 
 /* CHECK2.C */
-void	check_create_tetri(t_piece **tetri, char **content, char **tetri_tab, int *i);
+void	check_create_tetri(t_env *e, int i, int tetri_save);
 
 /* ADD.C */
 void	add_nb_tetri(int *nb_tetri, int x);
@@ -88,17 +88,16 @@ void	add_swap_tetri(char **a, char **b);
 void	swap_coor_tetri(t_piece *a, t_piece *b);
 
 /* SEARCH.C */
-//void	first_sharp(t_piece *tetri, int x, int y);
-void		first_sharp(t_piece *tetri);
+void	first_sharp(t_piece *tetri);
 
 /* CHECK_TETRIMINO.C */
-void	check_tetri3(t_env *e, int i, int nb_col, int nb_lines);
+void	check_tetri(t_env *e, int i, int nb_col, int nb_lines);
 void 	check_tetriminos(t_env *e);
-void	check_tetriminos2(t_env *e);
+void	check_tetriminos_sharp(t_env *e);
+void	valid_piece(t_env *e);
 
 /* GET_TETRIMINOS.C */
 void	get_tetriminos(t_env *e, char *file);
-void	valid_tetri(char **tetri_tab, int *x, int *y);
 
 /* RESOLVER.C */
 void	resolver(t_env *e);

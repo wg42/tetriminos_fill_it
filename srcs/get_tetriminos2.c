@@ -43,7 +43,7 @@ static int		search_first(int *tab)
 	return (3);
 }
 
-void			check_tetri3(t_env *e, int i, int nb_col, int nb_lines)
+void			check_tetri(t_env *e, int i, int nb_col, int nb_lines)
 {
 	int		lines[4];
 	int		col[4];
@@ -52,7 +52,7 @@ void			check_tetri3(t_env *e, int i, int nb_col, int nb_lines)
 	init_tabs(&lines[0], &col[0]);
 	fill_tabs(e, i, &lines[0], &col[0]);
 	first = search_first(&col[0]);
-	if (nb_col == 2 && (first > 2 || !col[first + 1]))
+	if (nb_col == 2 && (first > 2 || !col[first]))
 		ft_error("error");
 	if (nb_col == 3 && (first > 1 || !col[first + 1] || !col[first + 2]))
 		ft_error("error");
